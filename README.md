@@ -6,7 +6,8 @@
 ## Update Roadmap
  Many updates are planned for the program such as: ~~incorporating pinging devices and only carrying on with DNS verification if the IP is pingable~~ (completed), as well as fixing a bug involving the socket  
  library.
- New Update Plan: Adding a prompt to switch between requiring pings or not.
+ </br>New Update Plan: ~~Adding a prompt to switch between requiring pings or not.~~ (completed)
+ </br>Include a feature that allows pointing to different DNS servers
 
 ## Use
  The program is user friendly, so all the user has to do is specify the subnet to dig through.
