@@ -7,7 +7,7 @@ import socket
 sys.path.append('usr/lib/python3/dist-packages')
 
 # Define the subnet you wish to search through here
-SUBNET = "157.160.35" 
+SUBNET = "X.X.X" 
 
 # Setting the sentinel value to one that will keep the while loop going
 ping_prompt = 2
