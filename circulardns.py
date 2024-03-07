@@ -7,15 +7,27 @@ import socket
 sys.path.append('usr/lib/python3/dist-packages')
 
 # Define the subnet you wish to search through here
-SUBNET = "" 
+SUBNET = "157.160.35" 
+
+# Setting the sentinel value to one that will keep the while loop going
+ping_prompt = 2
+
+# While loop prompting user for response until a valid response is given
+while ping_prompt != 0 and ping_prompt != 1:
+    ping_prompt = int(input("Would you like to check if each IP is pingable before resolving? 0 - yes, 1 - no\n"))
+    if ping_prompt != 1 and ping_prompt != 0:
+        print("Invalid response, please input again")
+    
 
 # Loops through the full range, properly formatting the IPs and hostnames
 for i in range(1, 256):
     IP = SUBNET + "." + str(i)
-    # Checks to ensure the host is pingable before carrying on through the process
+    # Checks to ensure the host is pingable before carrying on through the process (given the user chose to)
     # Note: Using the c switch in this command does require permissions. Ensure you have them before running.
-    response = os.system("ping -c 1 " + IP)
-    if response == 0:
+    if ping_prompt == 0:
+        response = os.system("ping -c 1 " + IP)
+    # Checks first if the user chose no, if not then checks if the box was pingable
+    if (ping_prompt == 1 or response == 0):
         try:
             temphost = str(socket.gethostbyaddr(IP))
             host = ""
@@ -39,5 +51,4 @@ for i in range(1, 256):
                 else:
                     print("FAIL: %s -> %s -> unassigned" %(IP, host))
 
-    # The else case has been considered, but is not needed as
-    # We don't want to do anything with the IP if it is not pingable
+    # The else case has been considered, but is not needed
